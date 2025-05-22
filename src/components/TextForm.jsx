@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
+
   const [text, setText] = useState("");
 
   const handelUpClick = () => {
@@ -8,7 +9,7 @@ export default function TextForm(props) {
   };
   const handelOnchange = (event) => {
     setText(event.target.value);
-    console.log(text.length);
+    //console.log(text.length);
   };
   const handelCopyToClipboardClick = (event) => {
     navigator.clipboard
@@ -18,12 +19,12 @@ export default function TextForm(props) {
 
     document.title = "Copy To Clopboard";
 
-    setInterval(() => {
-      document.title = "Copy To Clopboard";
-    }, 2000);
-    setInterval(() => {
-      document.title = "Clopboard";
-    }, 1500);
+    // setInterval(() => {
+    //   document.title = "Copy To Clopboard";
+    // }, 2000);
+    // setInterval(() => {
+    //   document.title = "Clopboard";
+    // }, 1500);
   };
   return (
     <div className="pl-14">
@@ -43,8 +44,9 @@ export default function TextForm(props) {
           required
         />
         <button
+          disabled={text.length === 0}
           type="button"
-          className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-2"
+          className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-2 "
           onClick={handelUpClick}
         >
           Convert To Uppercase
@@ -60,9 +62,9 @@ export default function TextForm(props) {
       <div className="container my-3">
         <h1>Your Text Summary</h1>
         <p>
-          {text.split(" ").length} Words and {text.length} characters
+          {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} Words and {text.length} characters
         </p>
-        <p>{0.008 * text.length} mins to read</p>
+        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} mins to read</p>
         <h3>Preview</h3>
         <p>{text}</p>
       </div>

@@ -86,7 +86,7 @@ export default function NavBar(props) {
                 Contact
               </a>
             </li>
-          </ul>
+          </ul>          
         </div>
       </div>
       {/* <label class="inline-flex items-center me-5 cursor-pointer">
